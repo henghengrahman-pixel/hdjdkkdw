@@ -1,0 +1,29 @@
+RAILWAY DEPLOY - PERSISTENT DATA
+================================
+
+1. Deploy project ini ke Railway.
+2. Tambahkan Railway Volume dengan Mount Path:
+   /data
+
+3. Variables wajib:
+   API_ID=...
+   API_HASH=...
+   SESSION_STRING=...
+   ADMIN_USER=admin
+   ADMIN_PASSWORD=...
+   SECRET_KEY=...
+   DATA_DIR=/data
+   DATA_FILE=/data/bot_data.json
+   MEDIA_DIR=/data/media
+   BACKUP_DIR=/data/backups
+
+4. Start command sudah melalui Procfile:
+   web: python main.py
+
+DATA YANG PERSISTENT:
+- /data/bot_data.json : grup, caption, tombol, ON/OFF, delay, forward, media metadata
+- /data/media/         : file foto/video upload dashboard
+- /data/backups/       : backup config (maks 20 file)
+
+Project otomatis migrasi data lama dari bot_data.json atau data.json ke DATA_FILE.
+SESSION_STRING/API_HASH/password tetap simpan di Railway Variables, bukan file data.
